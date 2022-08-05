@@ -7,8 +7,18 @@ import {
 export class SpecificationRepository implements ISpecificationsRepository {
   private specifications: Specification[];
 
-  constructor() {
+  private static INSTANCE;
+
+  private constructor() {
     this.specifications = [];
+  }
+
+  static getStance(): SpecificationRepository {
+    if (!SpecificationRepository.INSTANCE) {
+      SpecificationRepository.INSTANCE = new SpecificationRepository();
+    }
+
+    return SpecificationRepository.INSTANCE;
   }
 
   findByName(name: string): Specification {
