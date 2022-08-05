@@ -2,8 +2,11 @@ import { v4 as uuidv4 } from "uuid";
 
 export class Category {
   readonly id?: string;
+
   readonly name: string;
+
   readonly description: string;
+
   readonly created_at: Date;
 
   constructor(name: string, description: string, createdAt?: string) {
