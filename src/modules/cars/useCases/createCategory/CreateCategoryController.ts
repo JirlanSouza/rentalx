@@ -11,9 +11,9 @@ export class CreateCategoryController {
     try {
       this.createCategoryUseCase.execute({ name, description });
 
-      return response.end();
+      return response.status(201).end();
     } catch (err) {
-      return response.status(400).json({ error: err.massage });
+      return response.status(409).json({ error: err.message });
     }
   }
 }

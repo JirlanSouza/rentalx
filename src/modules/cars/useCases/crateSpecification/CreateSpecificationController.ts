@@ -11,7 +11,7 @@ export class CreateSpecificationController {
     try {
       this.createSpecificationUseCase.execute({ name, description });
 
-      return response.end();
+      return response.status(201).end();
     } catch (err) {
       return response.status(400).json({ error: err.massage });
     }
