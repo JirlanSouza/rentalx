@@ -6,10 +6,11 @@ import swaggerUI from "swagger-ui-express";
 import swaggerFile from "./swagger.json";
 
 import { router } from "./routes/index";
+import { Logger } from "./shared/logger/index";
 
 const app = express();
 app.use(express.json());
 app.use(router);
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerFile));
 
-app.listen(8080, () => console.info("Server is running!"));
+app.listen(8080, () => Logger.info("Server is running!"));
