@@ -7,6 +7,7 @@ import swaggerFile from "./swagger.json";
 
 import { router } from "./routes/index";
 import { Logger } from "./shared/logger/index";
+import "./database";
 
 const app = express();
 app.use(express.json());
