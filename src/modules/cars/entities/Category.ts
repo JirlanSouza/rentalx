@@ -1,12 +1,18 @@
 import { v4 as uuidv4 } from "uuid";
+import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
 
+@Entity("categories")
 export class Category {
+  @PrimaryColumn()
   readonly id?: string;
 
+  @Column()
   readonly name: string;
 
+  @Column()
   readonly description: string;
 
+  @CreateDateColumn()
   readonly created_at: Date;
 
   constructor(name: string, description: string, createdAt?: string) {

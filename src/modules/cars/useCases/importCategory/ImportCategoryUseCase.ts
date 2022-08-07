@@ -2,6 +2,7 @@ import fs from "node:fs";
 import csvParser from "csv-parser";
 
 import { ICategoryRepository } from "../../repositories/ICategoriesRepository";
+import { Logger } from "../../../../shared/logger/index";
 
 interface IFile {
   fieldname: string;
@@ -29,10 +30,12 @@ export class ImportCategoryUseCase {
     categories.map(async (category) => {
       const { name, description } = category;
 
-      const alreadyExistCategory = this.repository.findByName(name);
+      Logger.info(name, description);
+
+      const alreadyExistCategory = await this.repository.findByName(name);
 
       if (!alreadyExistCategory) {
-        this.repository.create({ name, description });
+        await this.repository.create({ name, description });
       }
     });
   }

@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { createSpecificationController } from "../modules/cars/useCases/crateSpecification";
+import { createSpecificationController } from "../modules/cars/useCases/createSpecification/index";
 import { Logger } from "../shared/logger/index";
 
 const specificationRoutes = Router();
