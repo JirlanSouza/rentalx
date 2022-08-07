@@ -1,9 +1,9 @@
 import fs from "node:fs";
 import csvParser from "csv-parser";
-
 import { inject, injectable } from "tsyringe";
 
 import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
+import { AppError } from "../../../../errors/AppError";
 
 interface IFile {
   fieldname: string;
@@ -44,6 +44,10 @@ export class ImportCategoryUseCase {
   }
 
   loadCategories(file: IFile): Promise<IImportCategory[]> {
+    if (file?.mimetype !== "text/csv") {
+      throw new AppError("File type is invalid!", 400);
+    }
+
     return new Promise<IImportCategory[]>((resolve, reject) => {
       const stream = fs.createReadStream(file?.path);
       const parserFile = csvParser(["name", "description"]);

@@ -1,10 +1,13 @@
-import { Request, Response } from "express";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-vars */
+import { NextFunction, Request, Response } from "express";
 import { AppError } from "../errors/AppError";
 
 export const errorVerification = (
   err: Error,
   request: Request,
-  response: Response
+  response: Response,
+  next: NextFunction
 ): Response => {
   if (err instanceof AppError) {
     return response.status(err.statusCode).json({ message: err.message });
