@@ -45,6 +45,10 @@ export class ImportCategoryUseCase {
 
   loadCategories(file: IFile): Promise<IImportCategory[]> {
     if (file?.mimetype !== "text/csv") {
+      fs.unlink(file.path, (err) => {
+        throw err;
+      });
+
       throw new AppError("File type is invalid!", 400);
     }
 
