@@ -15,13 +15,12 @@ export class Category {
   @CreateDateColumn()
   readonly created_at: Date;
 
-  constructor(name: string, description: string, createdAt?: string) {
+  constructor(name: string, description: string) {
     if (!this.id) {
       this.id = uuidv4();
     }
 
     this.name = name;
     this.description = description;
-    this.created_at = createdAt ? new Date(createdAt) : new Date();
   }
 }

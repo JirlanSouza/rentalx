@@ -17,20 +17,15 @@ export class CategoriesRepository implements ICategoriesRepository {
       name: data.name,
       description: data.description,
     });
+
     await this.repository.save(category);
   }
 
   async list(): Promise<Category[]> {
-    const categories = this.repository.find();
-    return categories;
+    return this.repository.find();
   }
 
-  async findByName(userName: string): Promise<Category> {
-    const category = this.repository.findOne({
-      where: {
-        name: userName,
-      },
-    });
-    return category;
+  async findByName(name: string): Promise<Category> {
+    return this.repository.findOne({ name });
   }
 }
