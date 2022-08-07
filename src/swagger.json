@@ -75,19 +75,54 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "description": {
-                        "type": "string"
-                      }
+                    "$ref": "#/definitions/user"
+                  },
+                  "example": [
+                    {
+                      "name": "Category 1 name example",
+                      "description": "Category 1 description example"
+                    },
+                    {
+                      "name": "Category 2 name example",
+                      "description": "Category 2 description example"
+                    },
+                    {
+                      "name": "Category 3 name example",
+                      "description": "Category 3 description example"
                     }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categories/import": {
+      "post": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Import categories",
+        "description": "Import categories from csv file",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
                   }
                 }
               }
             }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
           }
         }
       }
@@ -119,6 +154,42 @@
               }
             }
           }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "409": {
+            "description": "Error: Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "enum": [
+                        "Specification already exists!"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "user": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
         }
       }
     }
