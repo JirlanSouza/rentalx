@@ -4,30 +4,20 @@ import {
   ISpecificationsRepository,
 } from "../ISpecificationsRepository";
 
-export class SpecificationRepository implements ISpecificationsRepository {
+export class SpecificationsRepository implements ISpecificationsRepository {
   private specifications: Specification[];
 
-  private static INSTANCE;
-
-  private constructor() {
+  constructor() {
     this.specifications = [];
   }
 
-  static getStance(): SpecificationRepository {
-    if (!SpecificationRepository.INSTANCE) {
-      SpecificationRepository.INSTANCE = new SpecificationRepository();
-    }
-
-    return SpecificationRepository.INSTANCE;
-  }
-
-  findByName(name: string): Specification {
+  async findByName(name: string): Promise<Specification> {
     return this.specifications.find(
       (specification) => specification.name === name
     );
   }
 
-  create(data: ICreateSpecificationDTO): void {
+  async create(data: ICreateSpecificationDTO): Promise<void> {
     const specification = new Specification(data.name, data.description);
 
     this.specifications.push(specification);

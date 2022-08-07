@@ -1,13 +1,10 @@
 import { Router } from "express";
 
-import { createSpecificationController } from "../modules/cars/useCases/createSpecification/index";
-import { Logger } from "../shared/logger/index";
+import { CreateSpecificationController } from "../modules/cars/useCases/createSpecification/CreateSpecificationController";
 
 const specificationRoutes = Router();
+const createSpecificationController = new CreateSpecificationController();
 
-specificationRoutes.post("/", (request, response) => {
-  Logger.info(`${request.method} => ${request.originalUrl}`);
-  createSpecificationController.handle(request, response);
-});
+specificationRoutes.post("/", createSpecificationController.handle);
 
 export { specificationRoutes };

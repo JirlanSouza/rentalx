@@ -1,8 +1,9 @@
 import fs from "node:fs";
 import csvParser from "csv-parser";
 
-import { ICategoryRepository } from "../../repositories/ICategoriesRepository";
-import { Logger } from "../../../../shared/logger/index";
+import { inject, injectable } from "tsyringe";
+
+import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
 
 interface IFile {
   fieldname: string;
@@ -21,16 +22,18 @@ interface IImportCategory {
   description: string;
 }
 
+@injectable()
 export class ImportCategoryUseCase {
-  constructor(private repository: ICategoryRepository) {}
+  constructor(
+    @inject("CategoriesRepository")
+    private repository: ICategoriesRepository
+  ) {}
 
   async execute(file: IFile): Promise<void> {
     const categories = await this.loadCategories(file);
 
     categories.map(async (category) => {
       const { name, description } = category;
-
-      Logger.info(name, description);
 
       const alreadyExistCategory = await this.repository.findByName(name);
 
