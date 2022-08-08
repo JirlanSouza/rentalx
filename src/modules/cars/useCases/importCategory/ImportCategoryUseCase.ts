@@ -4,6 +4,7 @@ import { inject, injectable } from "tsyringe";
 
 import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
 import { AppError } from "../../../../errors/AppError";
+import { deleteFile } from "../../../../utils/file";
 
 interface IFile {
   fieldname: string;
@@ -43,11 +44,9 @@ export class ImportCategoryUseCase {
     });
   }
 
-  loadCategories(file: IFile): Promise<IImportCategory[]> {
+  async loadCategories(file: IFile): Promise<IImportCategory[]> {
     if (file?.mimetype !== "text/csv") {
-      fs.unlink(file.path, (err) => {
-        throw err;
-      });
+      await deleteFile(file.path);
 
       throw new AppError("File type is invalid!", 400);
     }
@@ -64,15 +63,15 @@ export class ImportCategoryUseCase {
         .on("data", async (row) => {
           const { name, description } = row;
 
-          categories.push({
-            name,
-            description,
-          });
+          if (name && description) {
+            categories.push({
+              name,
+              description,
+            });
+          }
         })
-        .on("end", () => {
-          fs.unlink(file.path, (err) => {
-            reject(err);
-          });
+        .on("end", async () => {
+          await deleteFile(file.path);
           resolve(categories);
         })
         .on("error", (error) => {
