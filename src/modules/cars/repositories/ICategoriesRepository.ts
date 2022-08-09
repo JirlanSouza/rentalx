@@ -8,5 +8,5 @@ export interface ICreateCategoryDTO {
 export interface ICategoriesRepository {
   findByName(userName: string): Promise<Category>;
   list(): Promise<Category[]>;
-  create(data: ICreateCategoryDTO): void;
+  create(data: ICreateCategoryDTO): Promise<void>;
 }
