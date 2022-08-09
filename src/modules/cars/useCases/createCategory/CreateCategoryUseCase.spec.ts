@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { AppError } from "@errors/AppError";
+import { AppError } from "@shared/errors/AppError";
 import { CategoriesInMemoryRepository } from "@modules/cars/repositories/in-memory/CategoriesInMemoryRepository";
 import { CreateCategoryUseCase } from "./CreateCategoryUserCase";
 

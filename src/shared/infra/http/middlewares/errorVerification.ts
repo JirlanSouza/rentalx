@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import { NextFunction, Request, Response } from "express";
 
-import { AppError } from "@errors/AppError";
+import { AppError } from "@shared/errors/AppError";
 
 export const errorVerification = (
   err: Error,

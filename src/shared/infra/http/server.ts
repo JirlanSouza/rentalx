@@ -4,14 +4,15 @@ import "express-async-errors";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import swaggerUI from "swagger-ui-express";
 
-import { router } from "@routes/index";
-import { Logger } from "@shared/logger/index";
-import { logger } from "@middlewares/logger";
-import { errorVerification } from "@middlewares/errorVerification";
+import { Logger } from "@shared/logger";
+
 // eslint-disable-next-line import/extensions
-import swaggerFile from "./swagger.json";
-import "./database";
+import swaggerFile from "../../../swagger.json";
+import { router } from "./routes";
+import "../typeorm";
 import "@shared/container";
+import { errorVerification } from "./middlewares/errorVerification";
+import { logger } from "./middlewares/logger";
 
 const app = express();
 app.use(express.json());

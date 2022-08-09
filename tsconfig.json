@@ -15,9 +15,7 @@
       "@config/*": ["config/*"],
       "@shared/*": ["shared/*"],
       "@database/*": ["database/*"],
-      "@routes/*": ["routes/*"],
       "@utils/*": ["utils/*"],
-      "@middlewares/*": ["middlewares/*"],
       "@errors/*": ["errors/*"]
     }
   }
