@@ -4,7 +4,6 @@
 
 **RF** <br>
 Deve ser possível cadastrar novo carro.
-Deve ser possível listar todas categorias.<br>
 
 **RN** <br>
 Não dever ser possível cadastar um carro já existente.<br>

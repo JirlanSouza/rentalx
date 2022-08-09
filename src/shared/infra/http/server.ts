@@ -9,11 +9,12 @@ import { Logger } from "@shared/logger";
 // eslint-disable-next-line import/extensions
 import swaggerFile from "../../../swagger.json";
 import { router } from "./routes";
-import "../typeorm";
+import createConnection from "../typeorm";
 import "@shared/container";
 import { errorVerification } from "./middlewares/errorVerification";
 import { logger } from "./middlewares/logger";
 
+createConnection();
 const app = express();
 app.use(express.json());
 app.use(logger);

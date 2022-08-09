@@ -45,7 +45,12 @@ export class ImportCategoryUseCase {
   }
 
   async loadCategories(file: IFile): Promise<IImportCategory[]> {
-    if (file?.mimetype !== "text/csv") {
+    if (
+      !(
+        file?.mimetype === "text/csv" ||
+        file?.mimetype === "application/octet-stream"
+      )
+    ) {
       await deleteFile(file.path);
 
       throw new AppError("File type is invalid!", 400);
