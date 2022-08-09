@@ -2,9 +2,9 @@ import fs from "node:fs";
 import csvParser from "csv-parser";
 import { inject, injectable } from "tsyringe";
 
-import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
-import { AppError } from "../../../../errors/AppError";
-import { deleteFile } from "../../../../utils/file";
+import { ICategoriesRepository } from "@modules/cars/repositories/ICategoriesRepository";
+import { deleteFile } from "@utils/file";
+import { AppError } from "@errors/AppError";
 
 interface IFile {
   fieldname: string;

@@ -8,6 +8,17 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@modules/*": ["modules/*"],
+      "@config/*": ["config/*"],
+      "@shared/*": ["shared/*"],
+      "@database/*": ["database/*"],
+      "@routes/*": ["routes/*"],
+      "@utils/*": ["utils/*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@errors/*": ["errors/*"]
+    }
   }
 }

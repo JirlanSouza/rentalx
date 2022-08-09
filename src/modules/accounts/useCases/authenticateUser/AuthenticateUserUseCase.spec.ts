@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
-import { AppError } from "../../../../errors/AppError";
-import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
-import { UsersInMemoryRepository } from "../../repositories/in-memory/UsersInMemoryRepository";
-import { CreateUserUseCase } from "../createUser/CreateUserUseCase";
-import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase";
+import { AppError } from "@errors/AppError";
+import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
+import { UsersInMemoryRepository } from "@modules/accounts/repositories/in-memory/UsersInMemoryRepository";
+import { CreateUserUseCase } from "@modules/accounts/useCases/createUser/CreateUserUseCase";
+import { AuthenticateUserUseCase } from "@modules/accounts/useCases/authenticateUser/AuthenticateUserUseCase";
 
 let usersInMemoryRepository: UsersInMemoryRepository;
 let authenticateUserUseCase: AuthenticateUserUseCase;

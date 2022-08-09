@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
-import { AppError } from "../../../../errors/AppError";
-import { CategoriesInMemoryRepository } from "../../repositories/in-memory/CategoriesInMemoryRepository";
+import { AppError } from "@errors/AppError";
+import { CategoriesInMemoryRepository } from "@modules/cars/repositories/in-memory/CategoriesInMemoryRepository";
 import { CreateCategoryUseCase } from "./CreateCategoryUserCase";
 
 let createCategoryUseCase: CreateCategoryUseCase;
