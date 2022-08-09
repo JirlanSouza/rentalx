@@ -29,7 +29,7 @@ services:
       - DATABASE_USER_NAME=${DATABASE_USER_NAME}
       - DATABASE_PASSWORD=${DATABASE_PASSWORD}
       - DATABASE=${DATABASE}
-      - SECRET=${SERCRET}
+      - SECRET=${SECRET}
     links:
       - database
     depends_on:
