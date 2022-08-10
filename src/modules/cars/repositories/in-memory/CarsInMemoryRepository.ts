@@ -14,7 +14,29 @@ export class CarsInMemoryRepository implements ICarsRepository {
     fine_amount,
     brand,
     category_id,
+    specifications,
+    id,
   }: ICreateCarDTO): Promise<Car> {
+    if (id) {
+      const existsCar = this.cars.find((car) => car.id === id);
+
+      if (existsCar) {
+        Object.assign(existsCar, {
+          name,
+          description,
+          daily_rate,
+          license_plate,
+          fine_amount,
+          brand,
+          category_id,
+          specifications,
+          id,
+        });
+
+        return existsCar;
+      }
+    }
+
     const car = new Car();
     Object.assign(car, {
       name,
@@ -24,6 +46,8 @@ export class CarsInMemoryRepository implements ICarsRepository {
       fine_amount,
       brand,
       category_id,
+      specifications,
+      id,
     });
 
     this.cars.push(car);
@@ -47,5 +71,11 @@ export class CarsInMemoryRepository implements ICarsRepository {
           (category_id ? car.category_id === category_id : true) ||
           (brand ? car.brand === brand : true))
     );
+  }
+
+  async findById(id: string): Promise<Car> {
+    const car = this.cars.find((car) => car.id === id);
+
+    return car;
   }
 }
