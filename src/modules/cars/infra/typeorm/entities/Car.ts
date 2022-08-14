@@ -1,5 +1,6 @@
 import {
   Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
   JoinTable,
@@ -52,7 +53,7 @@ export class Car {
   })
   specifications: Specification[];
 
-  @Column()
+  @CreateDateColumn()
   created_at: Date;
 
   constructor() {
